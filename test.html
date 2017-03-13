@@ -1,0 +1,65 @@
+<html>
+	
+
+
+
+
+	<head>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	</head>
+   <body>
+      <script type=text/javascript>
+  
+
+
+  $(function() {
+    $('a#calculate').bind('click', function(event) {
+
+       event.preventDefault();
+  /*   $.getJSON("http://localhost:5000/_add_numbers", {
+        a: $('input[name="a"]').val(),
+        b: $('input[name="b"]').val()
+      }, function(data) {
+      	alert("ss");
+        $("#result").text(data.result);
+      });
+      return false;
+    });*/
+
+
+     
+    $.ajax({
+  
+	  dataType: "jsonp",
+	  
+	  url: "http://localhost:5000/_add_numbers",
+	  jsonCallback:"k",
+	  data: {
+	  	a: $('input[name="a"]').val(),
+	    b: $('input[name="b"]').val()
+	    },
+	  
+	  function k(d)
+     {
+     	alert(d);
+     },
+
+	  success: function(data) {
+	      	alert("ss");
+	        $("#result").text(data.result);
+	      }
+    });   //close ajax
+});       //close bind
+  });     //close ready
+</script>
+<h1>jQuery Example</h1>
+<p><input type=text size=5 name=a> +
+   <input type=text size=5 name=b> =
+   <span id=result>?</span>
+<p><a href=# id=calculate>calculate server side</a>
+      
+   </body>
+</html>
