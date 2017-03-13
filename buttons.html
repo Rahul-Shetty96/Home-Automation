@@ -1,0 +1,70 @@
+<html>
+<head>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<title>Control Home</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="button.css"></link>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+   <div id="home" class="row">
+
+		   	<div class="col-md-4">
+			   	 <div id="room1">
+				   	 BED ROOM 1<br>
+				   	  <input type="button" value="" id="r1_l">  <br>
+			     </div>
+
+			     <div id="room2">
+				     STUDY ROOM<br>
+				   	  <input type="button" value="" id="r2_l">  <br>
+				   	  <input type="button" value="" id="r2_f">  
+				 </div>
+		    </div>
+
+		    
+		     
+		    <div class="col-md-4">
+			     <div id="room3">
+				     LIVING ROOM<br>
+				      <input type="button" value="" id="r3_p">  <br>
+				      <input type="button" value="" id="r3_l">  <br>
+				      <input type="button" value="" id="r3_w">  
+			     </div>
+			</div>
+
+			<div class="col-md-4">
+			     <div id="room4">
+				     KITCHEN<br>
+				      <input type="button" value="" id="r4_t">  
+			     </div>
+			     <div id="room5">
+				     BED ROOM 2<br>
+				     <input type="button" value="" id="r5_l">  <br>
+					 <input type="button" value="" id="r5_f">
+			     </div>
+			</div>
+	</div>
+
+	<div class="row" id="door-cover">
+	<div class="col-md-offset-4 col-md-4" id="door">
+	DOOR<br>
+	<input type="button" value="" id="d">  
+	</div>
+	</div>
+
+</body>
+<script>
+   $(document).ready(function(){
+   	$('input').val('ON BULB'); 
+    });
+</script>
+</html>
