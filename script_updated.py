@@ -11,7 +11,7 @@ webiopi.setDebug()
 GPIO = webiopi.GPIO
 
 def setup():
-	GPIO.setFunction(15,GPIO.OUT);
+    GPIO.setFunction(15,GPIO.OUT);
     GPIO.setFunction(24,GPIO.OUT);
     GPIO.setFunction(16,GPIO.OUT);
     GPIO.setFunction(21,GPIO.OUT);
@@ -25,8 +25,9 @@ def setup():
 
 @webiopi.macro
 def ONOFF(id,stat):
-	if(stat == 0)
+	st=int(stat)
+	if st == 0:
 	GPIO.digitalWrite(pin[id],1);
-	else
+	else:
 	GPIO.digitalWrite(pin[id],0);
 	
