@@ -52,6 +52,7 @@ div{
 	}
 	#door{
 		border: 2px solid grey;
+		color : black;
 	}
     input{
         font-size: 20px;
