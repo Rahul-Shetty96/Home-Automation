@@ -5,7 +5,9 @@ div{
 		margin: 0px;
 		font-style: monospace;
 		font-size: 30px;
+        color : white;
     }
+
     #room1,#room2,#room5,#room4{
     	
     	padding: 0px;
@@ -16,25 +18,30 @@ div{
     	height: 60%;
     	width : 80%;
     	vertical-align: middle;
+        
+        background-size: cover;
     	
     }
     #room2{
     	height: 40%;
+       
+        background-size: cover;
     }
 
     #room3{
     	height: 100%;
     	
+        background-size: cover;
     	
     }
     #room4{
     	height: 40%;
-    	
+         background-size: cover;
     	
     }
     #room5{
     	height: 60%;
-    	
+    	background-size: cover;
     	
     }
     #home{
@@ -50,4 +57,5 @@ div{
         font-size: 20px;
         padding: 0px 5px;
         margin: 10px;
+        color : black;
     }
