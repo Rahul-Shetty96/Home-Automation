@@ -1,0 +1,181 @@
+<html>
+<head>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<title>Control Home</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="button.css"></link>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/webiopi.js"></script>
+  
+</head>
+
+<body>
+
+   <div id="home" class="row">
+
+		   	<div class="col-md-4">
+			   	 <div id="room1">
+				   	 BED ROOM 1<br>
+				   	  <input type="button" onclick="pass_status(this.id)"  value="ON BULB" id="r1_l">  <br>
+			     </div>
+
+			     <div id="room2">
+				     STUDY ROOM<br>
+				   	  <input type="button" onclick="pass_status(this.id)"  value="ON FAN" id="r2_f">  
+				 </div>
+		    </div>
+
+		    
+		     
+		    <div class="col-md-4">
+			     <div id="room3">
+				     LIVING ROOM<br>
+				      
+				      <input type="button" onclick="pass_status(this.id)"  value="ON BULB" id="r3_l">  <br>
+				      
+				      
+			     </div>
+			</div>
+
+			<div class="col-md-4">
+			     <div id="room4">
+				     KITCHEN<br>
+				      <input type="button" onclick="pass_status(this.id)"  value="ON FLAME SENSOR" id="r4_t">  <br>
+				      <input type="button" onclick="pass_status(this.id)"  value="ON BULB" id="r4_l">  
+			     </div>
+			     <div id="room5">
+				     BED ROOM 2<br>
+				     <input type="button" value="ON BULB"  onclick="pass_status(this.id)"  id="r5_l">  <br>
+					 <input type="button" value="ON FAN"  onclick="pass_status(this.id)" id="r5_f">
+			     </div>
+			</div>
+	</div>
+
+	<div class="row" id="door-cover">
+	<div class="col-md-offset-4 col-md-4" id="door">
+	DOOR<br>
+	<input type="button" value="ON DOOR" id="d"  onclick="pass_status(this.id)" >  
+    <input type="button" value="ON PIR" id="p"  onclick="pass_status(this.id)" >  
+	<input type="button" value="ON LIGHT" id="l"  onclick="pass_status(this.id)" >  
+	</div>
+	</div>
+
+</body>
+<script type="text/javascript">
+    // webiopi().ready(function() {}
+
+	
+
+	 var stat = {r1_l:0, r2_f:0, r3_l:0, r4_l:0, r4_t:0 ,r5_l:0, r5_f:0, p:0, l:0, d:0};
+	 var boff = "http://baskingridge-homesforsale.com/wp-content/uploads/parser/christmas-lights-in-bedroom-7.jpg"
+	 var bon =  "https://www.lexington.com/assets/user/upload/images/LowProfileDesignerBed.jpg"
+	 var son =  "https://s-media-cache-ak0.pinimg.com/600x315/df/f8/c1/dff8c1576404cd0f30ec9226f1f71b22.jpg"
+	 var soff = "http://vignette1.wikia.nocookie.net/amnesia/images/1/14/2013-08-11_00011.jpg/revision/latest?cb=20130811230020"
+	 var lon = "http://www.roundpulse.com/wp-content/uploads/2016/04/cottage-living-room.jpg"
+	 var loff = "http://vignette3.wikia.nocookie.net/villains/images/d/d2/302.jpg/revision/latest?cb=20110409060008"
+	 var kon = "http://www.pampatiles.com/wp-content/uploads/dark-kitchen-cabinets-with-light-countertops-brown-walnut-portable-island-with-granite-top-white-marble-table-top-organizer-rustic-wooden-night-lamp-black-metal-gas-stove-hidden-pantry-cabinet--792x528.jpg"
+	 var koff = "http://guanlun.github.io/assets/2014-05-09/kitchen.png"
+
+
+	 $(document).ready(function(){
+	 
+	 	$("#room1").css("background-image","url("+boff+")");
+	 	$("#room2").css("background-image","url("+son+")");
+	 	$("#room3").css("background-image","url("+loff+")");
+	 	$("#room4").css("background-image","url("+koff+")");
+	 	$("#room5").css("background-image","url("+boff+")");
+	 	$("#room1").css("background-size","cover");
+	 	$("#room2").css("background-size","cover");
+	 	$("#room3").css("background-size","cover");
+	 	$("#room4").css("background-size","cover");
+	 	$("#room5").css("background-size","cover");
+
+	 });
+
+	 function pass_status(id){
+     
+     //webiopi().callMacro("ONOFF",[id,stat[id]]);
+
+    
+     if(stat[id]==0)
+     stat[id] = 1;
+     else
+     stat[id]=0;
+
+     change_light(id);
+     changetext(id);
+    }
+
+    function changetext(id)
+    {
+       var o = $("#"+id);
+       var l = (o.val()+"").length;
+       var s = o.val().substring(o.val().indexOf(" ")+1,l);
+       
+       if(stat[id]==0)
+       o.val("ON "+s);
+       else
+       o.val("OFF "+s);
+    }
+
+    function change_light(id)
+    {
+    	var l = id.length;
+    	if(id.charAt(l-1) == 'l' && l>1)
+        {
+        	var c = id.charAt(1);
+        	if(c == '1' || c=='5')
+        	{
+        		if(stat[id] == 0)
+        		$("#room"+c).css("background-image","url("+boff+")");
+        		else
+        		$("#room"+c).css("background-image","url("+bon+")");
+
+        	}
+        	else if(c == '3')
+        	{
+        		if(stat[id] == 0)
+        		$("#room3").css("background-image","url("+loff+")");
+        		else
+        		$("#room3").css("background-image","url("+lon+")");
+        	}
+        	else if(c == '4')
+        	{
+        		if(stat[id] == 0)
+        		$("#room4").css("background-image","url("+koff+")");
+        		else
+        		$("#room4").css("background-image","url("+kon+")");
+        	}
+
+
+        }
+
+    }
+
+/*
+//bedroom light off
+//http://baskingridge-homesforsale.com/wp-content/uploads/parser/christmas-lights-in-bedroom-7.jpg
+//bedroom light on
+//https://www.lexington.com/assets/user/upload/images/LowProfileDesignerBed.jpg
+//study off
+//http://vignette1.wikia.nocookie.net/amnesia/images/1/14/2013-08-11_00011.jpg/revision/latest?cb=20130811230020
+//https://s-media-cache-ak0.pinimg.com/736x/4c/a8/f0/4ca8f0566ad4b5223e60914421e9f269.jpg
+
+//living room
+//on  http://www.roundpulse.com/wp-content/uploads/2016/04/cottage-living-room.jpg
+//off  http://vignette3.wikia.nocookie.net/villains/images/d/d2/302.jpg/revision/latest?cb=20110409060008
+
+//kitchen
+http://www.pampatiles.com/wp-content/uploads/dark-kitchen-cabinets-with-light-countertops-brown-walnut-portable-island-with-granite-top-white-marble-table-top-organizer-rustic-wooden-night-lamp-black-metal-gas-stove-hidden-pantry-cabinet--792x528.jpg
+
+http://guanlun.github.io/assets/2014-05-09/kitchen.png
+*/
+
+</script>
+</html>
